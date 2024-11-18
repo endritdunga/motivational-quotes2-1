@@ -1,0 +1,102 @@
+* {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+.container {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 5px solid black;
+  border-radius: 20px;
+  padding: 50px;
+}
+.shprehja {
+  font-size: 3rem;
+  width: 60%;
+}
+.buttons {
+  display: flex;
+  width: 40%;
+}
+button {
+  width: 9rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  margin: 2rem;
+}
+button:hover {
+  color: white;
+  background-color: black;
+}
+@media (max-width: 1088px) {
+  .shprehja {
+    font-size: 2rem;
+  }
+  button {
+    width: 8rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 977px) {
+  .shprehja {
+    font-size: 1.6rem;
+  }
+  button {
+    width: 6rem;
+  }
+}
+@media (max-width: 899px) {
+  button {
+    width: 5rem;
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 816px) {
+  button {
+    margin: 1rem;
+  }
+}
+@media (max-width: 713px) {
+  button {
+    width: 4rem;
+  }
+}
+@media (max-width: 608px) {
+  button {
+    width: 3.4rem;
+    font-size: 0.6rem;
+  }
+  .shprehja {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 558px) {
+  .shprehja {
+    font-size: 1rem;
+  }
+  button {
+    width: 2rem;
+    font-size: 0.4rem;
+  }
+}
+@media (max-width: 460px) {
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .shprehja {
+    width: 90%;
+    font-size: 0.8rem;
+  }
+  button {
+    width: 90%;
+    width: 3rem;
+    font-size: 0.6rem;
+    font-weight: 300;
+    border: 1px solid black;
+  }
+}
