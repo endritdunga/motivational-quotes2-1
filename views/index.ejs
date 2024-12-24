@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Advice</title>
+  </head>
+  <body>
+    <h1>Random Advice</h1>
+    <% if (data) { %>
+    <p><strong>Advice:</strong> <%= data %></p>
+    <% } else { %>
+    <p><strong>Error:</strong> <%= error || "No advice available." %></p>
+    <% } %>
+    <form action="/" method="post">
+      <button type="submit">Get New Advice</button>
+    </form>
+
+    <h2>Collection</h2>
+    <ul>
+      <% collection.forEach(item => { %>
+      <li>
+        <%= item.advice %>
+        <form
+          action="/edit/<%= item.id %>"
+          method="post"
+          style="display: inline"
+        >
+          <input
+            type="text"
+            name="newAdvice"
+            placeholder="Edit advice"
+            required
+          />
+          <button type="submit">Edit</button>
+        </form>
+        <form
+          action="/delete/<%= item.id %>"
+          method="post"
+          style="display: inline"
+        >
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+      <% }); %>
+    </ul>
+
+    <h3>Add Custom Advice</h3>
+    <form action="/post" method="post">
+      <input type="text" name="advice" placeholder="Your advice" required />
+      <button type="submit">Add Advice</button>
+    </form>
+  </body>
+</html>

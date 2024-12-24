@@ -30,7 +30,7 @@ app.post("/", async (req, res) => {
     const response = await axios.get("https://api.adviceslip.com/advice");
     adv = response.data.slip.advice;
     res.render("index.ejs", { data: adv, collection });
-    // colection.push(adv);
+    colection.push(adv);
     // console.log(`our array colection ${colection}`);
   } catch (error) {
     res.render("index.ejs", { error: "error " });
