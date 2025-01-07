@@ -2,11 +2,16 @@
 <html>
   <head>
     <title>Random Advice</title>
+    <link rel="stylesheet" href="styles/styles.css" />
   </head>
   <body>
     <h1>Random Advice</h1>
-    <% if (data) { %>
-    <p><strong>Advice:</strong> <%= data %></p>
+    <% if (locals.data) { %>
+    <form action="/save" method="post">
+      <textarea name="advice" rows="10"><%= data %></textarea>
+      <button type="submit">SAVE</button>
+    </form>
+
     <% } else { %>
     <p><strong>Error:</strong> <%= error || "No advice available." %></p>
     <% } %>

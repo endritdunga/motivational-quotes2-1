@@ -11,7 +11,7 @@ app.set("view engine", "ejs");
 
 let adv;
 let collection = [];
-console.log(collection);
+console.log(`our collection of advice ${collection}`);
 
 app.get("/", async (req, res) => {
   try {
@@ -30,14 +30,14 @@ app.post("/", async (req, res) => {
     const response = await axios.get("https://api.adviceslip.com/advice");
     adv = response.data.slip.advice;
     res.render("index.ejs", { data: adv, collection });
-    colection.push(adv);
+    // collection.push(adv);
     // console.log(`our array colection ${colection}`);
   } catch (error) {
     res.render("index.ejs", { error: "error " });
   }
 });
 
-app.post("/post", (req, res) => {
+app.post("/save", (req, res) => {
   const newAdvice = {
     advice: req.body.advice,
     id: collection.length + 1,
