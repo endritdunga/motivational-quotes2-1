@@ -5,9 +5,6 @@
 }
 .container {
   margin: 1rem;
-  /* display: flex; */
-  /* justify-content: space-around; */
-  /* align-items: center; */
   border: 5px solid black;
   border-radius: 20px;
   padding: 50px;
