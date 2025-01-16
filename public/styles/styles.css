@@ -1,8 +1,10 @@
 * {
+  font-family: Georgia, "Times New Roman", Times, serif;
   padding: 0;
   box-sizing: border-box;
   margin: 0;
 }
+
 .container {
   margin: 1rem;
   border: 5px solid black;
@@ -10,8 +12,7 @@
   padding: 50px;
 }
 .shprehja {
-  font-size: 3rem;
-  width: 60%;
+  font-size: 1.5rem;
 }
 .buttons {
   display: flex;
@@ -28,6 +29,36 @@ button:hover {
   color: white;
   background-color: black;
 }
+.top {
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+.botom {
+  display: flex;
+  justify-content: center;
+}
+textarea {
+  align-content: center;
+  border: none;
+  width: 30rem;
+  height: 7rem;
+}
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+.d-f {
+  display: flex;
+}
+.titulli {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
 @media (max-width: 1088px) {
   .shprehja {
     font-size: 2rem;

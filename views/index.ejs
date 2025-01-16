@@ -6,36 +6,39 @@
   </head>
   <body>
     <div class="container">
-      <h1>Random Advice</h1>
-      <% if (locals.data) { %>
-      <form action="/save" method="post">
-        <textarea class="shprehja" name="advice" rows="5"><%= data %></textarea>
-        <button type="submit">SAVE</button>
-      </form>
-
-      <% } else { %>
-      <p><strong>Error:</strong> <%= error || "No advice available." %></p>
-      <% } %>
-      <form action="/" method="post">
-        <button type="submit">Get New Advice</button>
-      </form>
-
-      <h2>Collection</h2>
-      <ul>
-        <% collection.forEach(item => { %>
-        <li class="shprehja">
-          <%= item.advice %>
-          <form
-            action="/edit/<%= item.id %>"
-            method="post"
-            style="display: inline"
+      <h1 class="titulli">Random Advice</h1>
+      <div class="top">
+        <% if (locals.data) { %>
+        <form class="d-f" action="/save" method="post">
+          
+          <textarea class="shprehja" name="advice" rows="4">
+          <%= data %></textarea
           >
-            <input
-              type="text"
-              name="newAdvice"
-              placeholder="Edit advice"
-              required
-            />
+          <button type="submit">SAVE</button>
+        </form>
+
+        <% } else { %>
+        <p><strong>Error:</strong> <%= error || "No advice available." %></p>
+        <% } %>
+        <form action="/" method="post">
+          <button type="submit">Get New Advice</button>
+        </form>
+      </div>
+
+     
+      <ul >
+        <% collection.forEach(item => { %>
+          
+          <form
+          action="/edit/<%= item.id %>"
+          method="post"
+          style="display: inline"
+        >
+        <div class="botom">
+        <li class="d-f">
+          <textarea class="shprehja" name="newAdvice" rows="3" id="">
+ <%= item.advice %></textarea>
+
             <button type="submit">Edit</button>
           </form>
           <form
@@ -45,7 +48,8 @@
           >
             <button type="submit">Delete</button>
           </form>
-        </li>
+        </li></div>
+      
         <% }); %>
       </ul>
     </div>
