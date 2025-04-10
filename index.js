@@ -12,30 +12,76 @@ app.set("view engine", "ejs");
 let adv;
 let collection = [];
 console.log(`our collection of advice ${collection}`);
+const fallbackAdvice = [
+  "Stay positive and keep pushing forward.",
+  "Every step you take is progress.",
+  "Believe in yourself — you've got this!",
+  "shprehje motivuese ne shqip1",
+];
 
 app.get("/", async (req, res) => {
   try {
-    const response = await axios.get("https://api.adviceslip.com/advice");
-
-    adv = response.data.slip.advice;
-    console.log(adv);
+    const response = await axios.get(
+      `https://api.adviceslip.com/advice?timestamp=${Date.now()}`
+    );
+    adv =
+      response.data?.slip?.advice ||
+      fallbackAdvice[Math.floor(Math.random() * fallbackAdvice.length)];
+    console.log("Advice:", adv);
     res.render("index.ejs", { data: adv, collection });
   } catch (error) {
-    res.render("index.ejs", { error: "failed to make request" });
+    console.error("GET / Error:", error.message);
+    const randomFallback =
+      fallbackAdvice[Math.floor(Math.random() * fallbackAdvice.length)];
+    res.render("index.ejs", {
+      data: randomFallback,
+      error: "Failed to get advice from API. Showing fallback.",
+      collection,
+    });
   }
 });
 
 app.post("/", async (req, res) => {
   try {
-    const response = await axios.get("https://api.adviceslip.com/advice");
-    adv = response.data.slip.advice;
+    const response = await axios.get(
+      `https://api.adviceslip.com/advice?timestamp=${Date.now()}`
+    );
+    adv =
+      response.data?.slip?.advice ||
+      fallbackAdvice[Math.floor(Math.random() * fallbackAdvice.length)];
     res.render("index.ejs", { data: adv, collection });
-    // collection.push(adv);
-    // console.log(`our array colection ${colection}`);
   } catch (error) {
-    res.render("index.ejs", { error: "error " });
+    console.error("POST / Error:", error.message);
+    const randomFallback =
+      fallbackAdvice[Math.floor(Math.random() * fallbackAdvice.length)];
+    res.render("index.ejs", {
+      data: randomFallback,
+      error: "API down — using backup advice.",
+      collection,
+    });
   }
 });
+
+// app.get("/", async (req, res) => {
+//   try {
+//     const response = await axios.get("https://api.adviceslip.com/advice");
+//     adv = response.data.slip.advice;
+//     console.log(adv);
+//     res.render("index.ejs", { data: adv, collection });
+//   } catch (error) {
+//     res.render("index.ejs", { error: "failed to make request", collection });
+//   }
+// });
+
+// app.post("/", async (req, res) => {
+//   try {
+//     const response = await axios.get("https://api.adviceslip.com/advice");
+//     adv = response.data.slip.advice;
+//     res.render("index.ejs", { data: adv, collection });
+//   } catch (error) {
+//     res.render("index.ejs", { error: "Failed to make post", collection });
+//   }
+// });
 
 app.post("/save", (req, res) => {
   const newAdvice = {

@@ -18,6 +18,7 @@
   display: flex;
   width: 40%;
 }
+
 button {
   width: 9rem;
   height: 3rem;
@@ -42,7 +43,7 @@ button:hover {
 textarea {
   align-content: center;
   border: none;
-  width: 30rem;
+  width: 60%;
   height: 7rem;
 }
 ul {
@@ -52,6 +53,8 @@ ul {
 }
 .d-f {
   display: flex;
+  margin-top: 15px;
+  align-items: flex-end;
 }
 .titulli {
   display: flex;
@@ -71,10 +74,14 @@ ul {
 }
 @media (max-width: 977px) {
   .shprehja {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+    /* width: 28rem; */
   }
   button {
     width: 6rem;
+    margin: 1rem;
+    align-self: center;
+    font-size: 0.7rem;
   }
 }
 @media (max-width: 899px) {
@@ -128,3 +135,19 @@ ul {
     border: 1px solid black;
   }
 }
+@media (max-width: 460px) {
+  .d-f {
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+  }
+  .container {
+    display: block;
+    /* flex-wrap: wrap; */
+  }
+  .botom {
+    align-items: flex-end;
+  }
+}
+
+/* koment */
