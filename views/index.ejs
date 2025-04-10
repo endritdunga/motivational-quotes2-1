@@ -4,7 +4,36 @@
     <title>Random Advice</title>
     <link rel="stylesheet" href="styles/styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
+
+    <script>
+      function toggleEdit(id) {
+        const adviceText = document.getElementById(`advice-text-${id}`);
+        const editArea = document.getElementById(`edit-area-${id}`);
+        const editBtn = document.getElementById(`edit-btn-${id}`);
+
+        adviceText.style.display = "none";
+        editArea.style.display = "block";
+      }
+
+      function toggleLock(id) {
+        const lockCheckbox = document.getElementById(`lock-${id}`);
+        const textarea = document.querySelector(`#edit-area-${id} textarea`);
+        const saveButton = document.querySelector(
+          `#edit-area-${id} button[type="submit"]`
+        );
+        const editBtn = document.getElementById(`edit-btn-${id}`);
+
+        if (lockCheckbox.checked) {
+          textarea.disabled = true;
+          saveButton.style.display = "none";
+          editBtn.style.display = "none";
+        } else {
+          textarea.disabled = false;
+          saveButton.style.display = "inline-block";
+          editBtn.style.display = "inline-block";
+        }
+      }
+    </script>
   </head>
   <body>
     <div class="container">
@@ -12,7 +41,9 @@
       <div class="top">
         <% if (locals.data) { %>
         <form class="d-f" action="/save" method="post">
-          <textarea class="shprehja" name="advice" rows="4"><%= data %></textarea>
+          <textarea readonly class="shprehja" name="advice" rows="4">
+<%= data %></textarea
+          >
           <button type="submit">SAVE</button>
         </form>
 
@@ -23,39 +54,43 @@
           <button type="submit">Get New Advice</button>
         </form>
       </div>
-
-     
-      <ul >
+      <ul>
         <% collection.forEach(item => { %>
-          
-          <form
-          class="d-f"
-          action="/edit/<%= item.id %>"
-          method="post"
-      
-          name="newAdvice"
-        >
-        <div class="botom">
         <li class="d-f">
-          <textarea class="shprehja" name="newAdvice" rows="3" id="">
- <%= item.advice %></textarea>
+          <div id="advice-text-<%= item.id %>">
+            <p><%= item.advice %></p>
+            <button
+              id="edit-btn-<%= item.id %>"
+              onclick="toggleEdit(<%= item.id %>)"
+            >
+              Edit
+            </button>
+          </div>
 
-            <button type="submit">Edit</button>
-          </form>
-          <form
-          class="d-f"
-            action="/delete/<%= item.id %>"
-            method="post"
-        
-          >
+          <div id="edit-area-<%= item.id %>" style="display: none">
+            <form class="d-f" action="/edit/<%= item.id %>" method="post">
+              <textarea class="shprehja" name="newAdvice" rows="3">
+<%= item.advice %></textarea
+              >
+              <button type="submit">Save</button>
+            </form>
+          </div>
+
+          <form class="d-f" action="/delete/<%= item.id %>" method="post">
             <button type="submit">Delete</button>
           </form>
+
+          <label>
+            <input
+              type="checkbox"
+              id="lock-<%= item.id %>"
+              onchange="toggleLock(<%= item.id %>)"
+            />
+            Lock
+          </label>
         </li>
-      </div>
-      
         <% }); %>
       </ul>
     </div>
-    <!-- koment -->
   </body>
 </html>

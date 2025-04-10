@@ -53,6 +53,8 @@ ul {
 }
 .d-f {
   display: flex;
+  margin-top: 15px;
+  align-items: flex-end;
 }
 .titulli {
   display: flex;
